@@ -16,6 +16,7 @@ const LogIn =()=>{
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in 
+        
         const user = userCredential.user;
         // ...
         alert("You have successfully logged in");
