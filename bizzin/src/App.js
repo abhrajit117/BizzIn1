@@ -1,7 +1,10 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import AuthService from './Auth.js';
 import Cookies from 'universal-cookie';
 import { useState } from 'react';
+import Login from './LogIn.js';
+import Home from './Home.js';
 
 const cookie = new Cookies();
 
@@ -11,7 +14,15 @@ function App() {
     return (
       <>
       <div className="App">
-          <AuthService></AuthService>
+    
+      <Routes>
+        <Route path="/" element={<AuthService />}/>
+          
+        <Route path="/login" element={<Login />} />
+        <Route path="/login/home" element={<Home />} />
+          
+       
+      </Routes>
       </div>
       </>
     );
@@ -19,9 +30,7 @@ function App() {
   else{
     return (
       <>
-        <section className='h-screen background-theme w-full grid grid-rows-6'>
-             <h1 className='app-header font-extrabold text-8xl'>BizzIn</h1>
-        </section>
+        <Home></Home>
       </>
     );
   }

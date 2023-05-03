@@ -5,11 +5,12 @@ import { useState } from 'react';
 import './Auth.css';
 import './App.css';
 import LogIn from './LogIn.js';
+import { useNavigate } from "react-router-dom";
 
 const cookies = new Cookies();
 
 function Auth(props){
-   
+   const navigate = useNavigate();
     const googleSignUp = async()=>{
          const result =  await signInWithPopup(auth, provider);
          cookies.set("auth-token",result.user.refreshToken);
@@ -25,11 +26,15 @@ Without more context or information about the specific auth and provider variabl
          */
     }
    
+    const redirectToLogin=()=>{
+         navigate("/login");
+    }
+
     return(   
        <>
         <div className='background-theme h-screen w-full grid grid-rows-6 gap-11'>
-             <button className='text-4xl p-11 border-black bg-green-800 text-white w-96' >LOGIN</button>
-            <button onClick={googleSignUp} className='text-4xl p-11 border-black bg-green-800 text-white w-96'>Continue With Google</button>
+             <button className='text-4xl p-11 border-black bg-green-800 text-white w-96' onClick={redirectToLogin}>LOGIN</button>
+             <button onClick={googleSignUp} className='text-4xl p-11 border-black bg-green-800 text-white w-96'>Continue With Google</button>
         </div>
        </> 
        ); 
